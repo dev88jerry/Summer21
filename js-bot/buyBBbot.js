@@ -1,112 +1,96 @@
 /*
-var audio;
-function doSound() {
-    try{
-        audio.pause();
-    }catch(err){
-
-    }
-    audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3');
-    audio.play();
-}
+BB script that can be changed to purchase items.
 */
 var bestBuyTimer = parseInt(localStorage.getItem('best-buy-count'))
+
 var secondsToRefresh = 1
+
 bestBuyTimer = isNaN(bestBuyTimer) ? 1 : bestBuyTimer
+
 setTimeout(() => {
-        
-	var confirmNoWarranty = '/en-ca/required-parts'
-	//requires user to be logged in
+    //links to xbox, ps5
+    var bestBuyXboxPath = '/en-ca/product/xbox-series-x-1tb-console-new-model-online-only/14964951'
+    var bestBuyPS5Path = '/en-ca/product/playstation-5-console-online-only/14962185'
+    //links to gpus
+    var bestBuy3060Path = '/en-ca/product/evga-nvidia-geforce-rtx-3060-xc-12gb-dddr6-video-card/15318940'
+    var bestBuy3060tiPath = '/en-ca/product/nvidia-geforce-rtx-3060-ti-8gb-gddr6-video-card/15166285'
+    var bestBuy3070Path = '/en-ca/product/nvidia-geforce-rtx-3070-8gb-gddr6-video-card-only-at-best-buy/15078017'
+    var bestBuy3080Path = '/en-ca/product/nvidia-geforce-rtx-3080-10gb-gddr6x-video-card/15463567'
+
+    var confirmNoWarranty = '/en-ca/required-parts'
     var paymentChoice = '/en-ca/basket'
-	
-	//test code to see if in stock items work
-	
-	var djiAir2sPath = '/en-ca/product/dji-air-2s-quadcopter-drone-with-camera-controller-grey/15387566'
-	
-	var hyperXPath = '/en-ca/product/hyperx-cloud-flight-over-ear-sound-isolating-rf-wireless-gaming-headset-black-red/12330375'
-	
-	var macbookPath = '/en-ca/product/apple-macbook-pro-13-3-w-touch-bar-fall-2020-space-gray-apple-m1-chip-1tb-ssd-16gb-ram-en/15318942'
-	
-	console.log('Checking Pages...')
-	
-	if(location.pathname.indexOf(hyperXPath) > -1) {
-		const el = document.querySelector('.addToCartButton');
-		console.log('In Stock')
-		if(el.disabled){
+
+    console.log('Checking for stock...')
+
+    if (location.pathname.indexOf(bestBuy3060Path) > -1) {
+        const el = document.querySelector('.addToCartButton');
+        console.log('In Stock')
+        if (el.disabled) {
             ++bestBuyTimer
             secondsToRefresh = (70 + bestBuyTimer)
             console.log(`Out of Stock... Reloading in ${secondsToRefresh} seconds`)
-            localStorage.setItem('best-buy-count',`${bestBuyTimer}`)
+            localStorage.setItem('best-buy-count', `${bestBuyTimer}`)
             setTimeout(() => {
                 location.reload();
-                if(bestBuyTimer > 9){
-                    localStorage.setItem('best-buy-count',`1`)
+                if (bestBuyTimer > 9) {
+                    localStorage.setItem('best-buy-count', `1`)
                 }
-            },1000 * secondsToRefresh)
-        }else{
-            //doSound()			
+            }, 1000 * secondsToRefresh)
+        } else {
             el.click()
-			alert('HyperX in Stock.... BUY BUY BUY!!!!!')
+            alert('3060 in Stock.... BUY BUY BUY!!!!!')
         }
-	}
-	else if (location.pathname.indexOf(djiAir2sPath) > -1)
-	{
-		const el = document.querySelector('.addToCartButton');
-		console.log('In Stock')
-		if(el.disabled){
+    } else if (location.pathname.indexOf(bestBuy3060tiPath) > -1) {
+        const el = document.querySelector('.addToCartButton');
+        console.log('In Stock')
+        if (el.disabled) {
             ++bestBuyTimer
             secondsToRefresh = (70 + bestBuyTimer)
             console.log(`Out of Stock... Reloading in ${secondsToRefresh} seconds`)
-            localStorage.setItem('best-buy-count',`${bestBuyTimer}`)
+            localStorage.setItem('best-buy-count', `${bestBuyTimer}`)
             setTimeout(() => {
                 location.reload();
-                if(bestBuyTimer > 9){
-                    localStorage.setItem('best-buy-count',`1`)
+                if (bestBuyTimer > 9) {
+                    localStorage.setItem('best-buy-count', `1`)
                 }
-            },1000 * secondsToRefresh)
-        }else{
-            //doSound()
+            }, 1000 * secondsToRefresh)
+        } else {
             el.click()
-			alert('DJI drone in Stock.... BUY BUY BUY!!!!!')
+            alert('3060ti in Stock.... BUY BUY BUY!!!!!')
         }
-	}
-	else if (location.pathname.indexOf(macbookPath) > -1) {
-		const el = document.querySelector('.addToCartButton');
-		console.log('In Stock')
-		if(el.disabled){
+    } else if (location.pathname.indexOf(bestBuy3070Path) > -1) {
+        const el = document.querySelector('.addToCartButton');
+        console.log('In Stock')
+        if (el.disabled) {
             ++bestBuyTimer
             secondsToRefresh = (70 + bestBuyTimer)
             console.log(`Out of Stock... Reloading in ${secondsToRefresh} seconds`)
-            localStorage.setItem('best-buy-count',`${bestBuyTimer}`)
+            localStorage.setItem('best-buy-count', `${bestBuyTimer}`)
             setTimeout(() => {
                 location.reload();
-                if(bestBuyTimer > 9){
-                    localStorage.setItem('best-buy-count',`1`)
+                if (bestBuyTimer > 9) {
+                    localStorage.setItem('best-buy-count', `1`)
                 }
-            },1000 * secondsToRefresh)
-        }else{
-            //doSound()			
+            }, 1000 * secondsToRefresh)
+        } else {
             el.click()
-			alert('MacBook in Stock.... BUY BUY BUY!!!!!')
+            alert('3070 in Stock.... BUY BUY BUY!!!!!')
         }
-	}
-	else if(location.pathname.indexOf(confirmNoWarranty) > -1){
-        //doSound()
+    } else if (location.pathname.indexOf(confirmNoWarranty) > -1) {
         const el = document.querySelector('[data-automation="go-to-cart"]');
         console.log('Is Confirm Adding Page')
-        if(el.disabled){
+        if (el.disabled) {
             console.log('Error on Page')
             setTimeout(() => {
                 location.reload();
-            },1000 * 20)
-        }else{
+            }, 1000 * 20)
+        } else {
             console.log('Going to Cart!')
             el.click()
         }
-    }else if(location.pathname.indexOf(paymentChoice) > -1){
+    } else if (location.pathname.indexOf(paymentChoice) > -1) {
         alert('BUY THE STUFF MAN!')
-        //doSound()
-    }else{
+    } else {
         console.log('Wrong Page : ' + location.href)
     }
-},5000)
+}, 5000)
