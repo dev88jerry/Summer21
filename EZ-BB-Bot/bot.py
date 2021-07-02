@@ -14,6 +14,11 @@ RTX3070LINK1 = "https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-p
 RTX3070LINK2 = "https://www.bestbuy.com/site/gigabyte-geforce-rtx-3070-8g-gddr6-pci-express-4-0-graphics-card-black/6437912.p?skuId=6437912"
 XBOXONETEST = "https://www.bestbuy.com/site/microsoft-xbox-one-s-1tb-console-bundle-white/6415222.p?skuId=6415222"
 
+RTX3060Link = "https://www.bestbuy.ca/en-ca/product/evga-nvidia-geforce-rtx-3060-xc-12gb-dddr6-video-card/15318940"
+RTX3060tiLink = "https://www.bestbuy.ca/en-ca/product/nvidia-geforce-rtx-3060-ti-8gb-gddr6-video-card/15166285"
+RTX3070Link = "https://www.bestbuy.ca/en-ca/product/nvidia-geforce-rtx-3070-8gb-gddr6-video-card-only-at-best-buy/15078017"
+
+
 driver.get(RTX3070LINK1)
 
 isComplete = False
@@ -35,14 +40,18 @@ while not isComplete:
         atcBtn.click()
 
         # go to cart and begin checkout as guest
-        driver.get("https://www.bestbuy.com/cart")
+        # driver.get("https://www.bestbuy.com/cart")
+        driver.get("https://www.bestbuy.ca/en-ca/basket")
 
+        # todo Check xpath
         checkoutBtn = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/main/div/div[2]/div[1]/div/div/span/div/div[2]/div[1]/section[2]/div/div/div[3]/div/div[1]/button"))
         )
         checkoutBtn.click()
         print("Successfully added to cart - beginning check out")
 
+        # should alredy be logged in... maybe not needed
+        
         # fill in email and password
         emailField = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "fld-e"))
@@ -60,6 +69,8 @@ while not isComplete:
         )
         signInBtn.click()
         print("Signing in")
+
+        # until here....
 
         # fill in card cvv
         cvvField = WebDriverWait(driver, 10).until(
