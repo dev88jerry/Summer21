@@ -19,7 +19,7 @@ RTX3060tiLink = "https://www.bestbuy.ca/en-ca/product/nvidia-geforce-rtx-3060-ti
 RTX3070Link = "https://www.bestbuy.ca/en-ca/product/nvidia-geforce-rtx-3070-8gb-gddr6-video-card-only-at-best-buy/15078017"
 
 
-driver.get(RTX3070LINK1)
+driver.get(RTX3070LINK)
 
 isComplete = False
 
